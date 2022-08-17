@@ -1,0 +1,16 @@
+(executable
+ (name main)
+ (modules main)
+ (modes js)
+ (flags
+  (:standard -open Ocamlformat_stdlib))
+ (libraries js_of_ocaml ocamlformat ocaml-version)
+ (preprocess
+  (pps js_of_ocaml-ppx)))
+
+(install
+ (package ocamlformat_preview)
+ (section bin)
+ (files
+  (main.bc.js as ocamlformat.bc.js)
+  index.html))
