@@ -1,13 +1,26 @@
 (executable
  (name main)
  (modules main)
- (modes js)
+ (modes byte)
  (flags
   (:standard -open Ocamlformat_stdlib))
  (libraries js_of_ocaml ocamlformat-lib ocaml-version)
  (preprocess
   (pps js_of_ocaml-ppx)))
 
+(rule
+ (targets main.js)
+ (action
+  (run
+   %{bin:js_of_ocaml}
+   --source-map
+   %{dep:main.bc}
+   -o
+   %{targets}
+   --pretty
+   --disable
+   genprim)))
+
 (alias
  (name default)
- (deps main.bc.js index.html))
+ (deps main.js index.html))
