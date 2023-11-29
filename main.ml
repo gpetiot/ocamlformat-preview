@@ -4,12 +4,12 @@ module Html = Dom_html
 module Input = struct
   let name = "<user input>"
 
-  let from : Ocamlformat.Config_option.updated_from =
+  let from : Ocamlformat_lib.Conf_t.updated_from =
     `Parsed (`File (Ocaml_common.Location.in_file name))
 end
 
 let format source conf =
-  let open Ocamlformat in
+  let open Ocamlformat_lib in
   match
     Translation_unit.parse_and_format Syntax.Use_file conf
       ~input_name:Input.name ~source
@@ -18,8 +18,8 @@ let format source conf =
   | Error e ->
       let error_buf = Buffer.create 100 in
       let fmt = Format.formatter_of_buffer error_buf in
-      Translation_unit.Error.print fmt ~debug:conf.opr_opts.debug
-        ~quiet:conf.opr_opts.quiet e;
+      Translation_unit.Error.print fmt ~debug:conf.opr_opts.debug.v
+        ~quiet:conf.opr_opts.quiet.v e;
       Format.pp_print_flush fmt ();
       let error_msg = Buffer.contents error_buf in
       Error error_msg
@@ -29,7 +29,7 @@ let get_element_exn id coerce =
   | None -> failwith (Printf.sprintf "unable to find element with id %s" id)
   | Some e -> e
 
-let add_option d elt Ocamlformat.Config_option.UI.{ names; values; update; doc }
+let add_option d elt Ocamlformat_lib.Conf_decl.UI.{ names; values; update; doc }
     =
   let name = List.last_exn names in
   let div = Html.createDiv d in
@@ -98,7 +98,7 @@ let format_action doc options _event =
       Js.Unsafe.global##.editor##.doc##.setValue
       [| Js.Unsafe.inject s |]
   in
-  let init = Ocamlformat.Conf.default in
+  let init = Ocamlformat_lib.Conf.default in
   let config = List.fold options ~init ~f:(fun c update -> update c) in
   let log = get_element_exn "log" Html.CoerceTo.div in
   let log kind s =
@@ -130,12 +130,14 @@ let onload _event =
     let format_buttons =
       Dom.list_of_nodeList (d##getElementsByClassName (Js.string "format"))
     in
-    let profile = add_option d profile_div Ocamlformat.Conf.UI.profile in
+    let profile = add_option d profile_div Ocamlformat_lib.Conf.UI.profile in
     let fmt_options =
-      List.map Ocamlformat.Conf.UI.fmt_opts ~f:(add_option d fmt_options_div)
+      List.map Ocamlformat_lib.Conf.UI.fmt_opts
+        ~f:(add_option d fmt_options_div)
     in
     let opr_options =
-      List.map Ocamlformat.Conf.UI.opr_opts ~f:(add_option d opr_options_div)
+      List.map Ocamlformat_lib.Conf.UI.opr_opts
+        ~f:(add_option d opr_options_div)
     in
     let options = (profile :: fmt_options) @ opr_options in
     List.iter format_buttons ~f:(fun button ->

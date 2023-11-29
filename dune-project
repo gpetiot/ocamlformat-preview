@@ -14,8 +14,7 @@
 (package
  (name ocamlformat_preview)
  (synopsis "OCamlFormat in the browser")
- (description
-  "Preview of the auto-formatter OCamlFormat in the browser.")
+ (description "Preview of the auto-formatter OCamlFormat in the browser.")
  (depends
   (ocaml
    (>= 4.08))
@@ -23,4 +22,5 @@
   js_of_ocaml
   (ocaml-version
    (>= 3.3.0))
-  ocamlformat))
+  (ocamlformat-lib
+   (>= 0.25.1))))

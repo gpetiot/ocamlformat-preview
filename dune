@@ -4,7 +4,7 @@
  (modes js)
  (flags
   (:standard -open Ocamlformat_stdlib))
- (libraries js_of_ocaml ocamlformat ocaml-version)
+ (libraries js_of_ocaml ocamlformat-lib ocaml-version)
  (preprocess
   (pps js_of_ocaml-ppx)))
 
