@@ -90,7 +90,7 @@ let add_option d elt Ocamlformat_lib.Conf_decl.UI.{ names; values; update; doc }
         update conf v Input.from
 
 let format_action doc options _event =
-  let editor_doc_get_value : unit -> Js.js_string Js.t =
+  let editor_doc_get_value () : Js.js_string Js.t =
     Js.Unsafe.fun_call Js.Unsafe.global##.editor##.doc##.getValue [||]
   in
   let editor_doc_set_value (s : Js.js_string Js.t) : unit =
