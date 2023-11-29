@@ -8,9 +8,6 @@
  (preprocess
   (pps js_of_ocaml-ppx)))
 
-(install
- (package ocamlformat_preview)
- (section bin)
- (files
-  (main.bc.js as ocamlformat.bc.js)
-  index.html))
+(alias
+ (name default)
+ (deps main.bc.js index.html))
