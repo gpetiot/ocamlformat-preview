@@ -61,21 +61,6 @@ a:hover {
   text-decoration: none;
 }
 
-button {
-  border: none;
-  border-radius: 5px;
-  background: var(--accent);
-  color: var(--bg);
-  padding: 0.7rem 0.9rem;
-  margin: 0.5rem 0;
-}
-
-button:focus,
-button:enabled:hover {
-  filter: brightness(1.4);
-  cursor: pointer;
-}
-
 fieldset {
   border: 4px solid var(--border);
   padding: 1rem;
@@ -104,19 +89,24 @@ select {
 }
 
 form button {
+  border: 1px solid var(--accent);
   border-radius: 10px;
-  display: inline;
+  padding: 0.7rem 0.9rem;
   margin: 20px auto;
   text-align: center;
-  width: 100%;
-  font-size: 40px;
-  font-family: "Courier New";
-  text-transform: uppercase;
+  display: block;
+  font-size: 30px;
+  text-transform: capitalize;
   font-weight: bolder;
+  background-color: #007bff;
+  color: #fff;
 }
 
-form button:focus {
-  background-color: green;
+form button:focus,
+form button:enabled:hover {
+  filter: brightness(1.4);
+  cursor: pointer;
+  background-color: var(--accent);
 }
 
 .CodeMirror {
