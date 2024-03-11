@@ -1,6 +1,16 @@
-# ocamlformat-preview
+<h1 align="center">
+  ocamlformat-preview
+</h1>
 
-ocamlformat-preview is a one-webpage preview of [`ocamlformat`](https://github.com/ocaml-ppx/ocamlformat) options in the browser.
+<p align="center">
+  ocamlformat-preview is a one-webpage preview of <a href="https://github.com/ocaml-ppx/ocamlformat">ocamlformat</a> options in the browser.
+</p>
+
+<p align="center">
+  <a href="https://github.com/gpetiot/ocamlformat-preview/actions/workflows/pages/pages-build-deployment">
+    <img src="https://github.com/gpetiot/ocamlformat-preview/actions/workflows/pages/pages-build-deployment/badge.svg" alt="Github pages deploy status" />
+  </a>
+</p>
 
 ## Features
 
