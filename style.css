@@ -66,6 +66,8 @@ fieldset {
   padding: 1rem;
   border-radius: 10px;
   margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 fieldset#profile {
@@ -84,7 +86,7 @@ fieldset#profile legend {
 input[type="submit"],
 input[type="number"],
 select {
-  width: 200px;
+  width: 100px;
   padding: 5px 0;
 }
 
