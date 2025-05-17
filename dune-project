@@ -23,4 +23,4 @@
   (ocaml-version
    (>= 3.3.0))
   (ocamlformat-lib
-   (>= 0.25.1))))
+   (= 0.27.0))))

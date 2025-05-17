@@ -5,7 +5,7 @@ module Input = struct
   let name = "<user input>"
 
   let from : Ocamlformat_lib.Conf_t.updated_from =
-    `Parsed (`File (Ocaml_common.Location.in_file name))
+    `Parsed (`File (Ocamlformat_ocaml_common.Location.in_file name))
 end
 
 let format source conf =
@@ -45,7 +45,6 @@ let add_option d elt Ocamlformat_lib.Conf_decl.UI.{ names; values; update; doc }
     match values with
     | Bool -> `Choice [ ""; "true"; "false" ]
     | Int -> `Int
-    | Range -> `Range
     | Choice v -> `Choice ("" :: v)
     | Ocaml_version ->
         `Choice (List.map Ocaml_version.Releases.all ~f:Ocaml_version.to_string)
