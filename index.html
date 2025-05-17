@@ -117,14 +117,46 @@ class backup =
         </div>
         
         <div class="options-container">
-          <fieldset id="profile">
-            <legend>Profile</legend>
+          <fieldset id="profile" class="collapsible">
+            <legend>
+              <button type="button" class="collapse-toggle" aria-expanded="false" aria-controls="profile-content">
+                Profile
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </legend>
+            <div id="profile-content" class="fieldset-content" hidden>
+              <!-- Content will be dynamically added here -->
+            </div>
           </fieldset>
-          <fieldset id="opr-options">
-            <legend>Meta options</legend>
+          
+          <fieldset id="opr-options" class="collapsible">
+            <legend>
+              <button type="button" class="collapse-toggle" aria-expanded="false" aria-controls="opr-options-content">
+                Meta options
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </legend>
+            <div id="opr-options-content" class="fieldset-content" hidden>
+              <!-- Content will be dynamically added here -->
+            </div>
           </fieldset>
-          <fieldset id="fmt-options">
-            <legend>Formatting options</legend>
+          
+          <fieldset id="fmt-options" class="collapsible">
+            <legend>
+              <button type="button" class="collapse-toggle" aria-expanded="false" aria-controls="fmt-options-content">
+                Formatting options
+                <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </legend>
+            <div id="fmt-options-content" class="fieldset-content" hidden>
+              <!-- Content will be dynamically added here -->
+            </div>
           </fieldset>
         </div>
         
@@ -149,6 +181,35 @@ class backup =
             matchBrackets: true,
           }
         );
+
+        // Handle collapsible fieldsets
+        document.querySelectorAll('.collapse-toggle').forEach(button => {
+          button.addEventListener('click', () => {
+            const expanded = button.getAttribute('aria-expanded') === 'true';
+            const content = document.getElementById(button.getAttribute('aria-controls'));
+            
+            button.setAttribute('aria-expanded', !expanded);
+            content.hidden = expanded;
+          });
+        });
+
+        // Function to move dynamically added options into the content divs
+        const moveOptionsToContent = () => {
+          ['profile', 'opr-options', 'fmt-options'].forEach(id => {
+            const fieldset = document.getElementById(id);
+            const content = document.getElementById(`${id}-content`);
+            
+            // Move all options that are direct children of the fieldset to the content div
+            Array.from(fieldset.children).forEach(child => {
+              if (child.classList?.contains('option')) {
+                content.appendChild(child);
+              }
+            });
+          });
+        };
+
+        // Call after a short delay to ensure dynamic content is added
+        setTimeout(moveOptionsToContent, 100);
       </script>
     </main>
     <footer>
