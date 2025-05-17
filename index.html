@@ -1,10 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>OCamlFormat preview</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="main.bc.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Online OCamlFormat code formatter preview tool" />
+    
+    <!-- Modern fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CodeMirror -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.6/codemirror.min.css"
@@ -25,6 +32,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script type="text/javascript" src="main.bc.js"></script>
   </head>
   <body>
     <main>
@@ -33,14 +41,15 @@
           <a
             href="https://github.com/gpetiot/ocamlformat-preview"
             class="github-corner"
+            aria-label="View source on GitHub"
           >
             <svg
               width="80"
               height="80"
               viewBox="0 0 250 250"
               style="
-                fill: black;
-                color: #fff;
+                fill: var(--accent);
+                color: var(--bg);
                 position: absolute;
                 top: 0;
                 border: 0;
@@ -66,15 +75,17 @@
       </div>
       <h1>
         OCamlFormat preview
-        <span style="font-size: 40px; color: #d67600">&#128043;</span>
+        <span style="font-size: 2.5rem; color: #d67600">&#128043;</span>
       </h1>
       <form>
-        <textarea
-          name="code"
-          id="code"
-          class="language-mllike"
-          spellcheck="false"
-        >
+        <div class="editor-container">
+          <textarea
+            name="code"
+            id="code"
+            class="language-mllike"
+            spellcheck="false"
+            aria-label="OCaml code editor"
+          >
 (* Welcome!
    Feel free to edit this example, or copy+paste your code here! *)
 
@@ -101,22 +112,30 @@ class backup =
       method save = copy <- Some {< copy = None >}
       method restore = match copy with Some x -> x | None -> self
     end
-      </textarea
-        >
-        <button type="button" class="format">format!</button>
-        <fieldset id="profile">
-          <legend>Profile</legend>
-        </fieldset>
-        <fieldset id="opr-options">
-          <legend>Meta options</legend>
-        </fieldset>
-        <fieldset id="fmt-options">
-          <legend>Formatting options</legend>
-        </fieldset>
-        <button type="button" class="format">format!</button>
+          </textarea>
+          <button type="button" class="format" aria-label="Format OCaml code">Format Code</button>
+        </div>
+        
+        <div class="options-container">
+          <fieldset id="profile">
+            <legend>Profile</legend>
+          </fieldset>
+          <fieldset id="opr-options">
+            <legend>Meta options</legend>
+          </fieldset>
+          <fieldset id="fmt-options">
+            <legend>Formatting options</legend>
+          </fieldset>
+        </div>
+        
+        <button type="button" class="format" aria-label="Format OCaml code">Format Code</button>
       </form>
-      <p>Log:</p>
-      <div id="log"></div>
+      
+      <div class="log-container">
+        <h2>Log output</h2>
+        <div id="log" aria-live="polite"></div>
+      </div>
+      
       <script>
         window.editor = CodeMirror.fromTextArea(
           document.getElementById("code"),
@@ -125,6 +144,9 @@ class backup =
             smartIndent: true,
             lineNumbers: true,
             lineWrapping: false,
+            theme: "default",
+            autoCloseBrackets: true,
+            matchBrackets: true,
           }
         );
       </script>
