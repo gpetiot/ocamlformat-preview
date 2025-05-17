@@ -210,7 +210,7 @@ form button.format:disabled {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .editor-container .CodeMirror {
@@ -379,7 +379,7 @@ footer a:hover {
 .options-container {
   display: grid;
   gap: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .log-container {
@@ -457,7 +457,7 @@ fieldset.collapsible {
   padding: 0;
   border: 2px solid var(--border);
   border-radius: 12px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   background: var(--accent-bg);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -605,4 +605,9 @@ fieldset.collapsible legend {
 /* Remove the previous fieldset styles that hide the profile legend */
 fieldset#profile legend {
   display: block;
+}
+
+/* Last fieldset shouldn't have margin */
+fieldset.collapsible:last-child {
+  margin-bottom: 0;
 }
