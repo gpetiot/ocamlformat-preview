@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/gpetiot/ocamlformat-preview/actions/workflows/pages/pages-build-deployment">
-    <img src="https://github.com/gpetiot/ocamlformat-preview/actions/workflows/pages/pages-build-deployment/badge.svg" alt="Github pages deploy status" />
+    <img src="https://github.com/gpetiot/ocamlformat-preview/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main" alt="Github pages deploy status" />
   </a>
 </p>
 
