@@ -31,28 +31,61 @@ html {
   scroll-behavior: smooth;
   padding: 0;
   margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  color: var(--text);
-  background: var(--bg);
-  line-height: 1.5;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
-  padding: 2rem 1rem;
-  min-width: 400px;
+  flex: 1;
+  padding: 1.5rem 1rem;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Header styles */
+.app-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
 }
 
 h1 {
   font-family: var(--sans-font);
-  text-align: center;
   font-weight: 800;
   font-size: 2.5rem;
+  line-height: 1.2;
   color: var(--text);
-  margin-bottom: 2rem;
+  margin: 0 0 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.camel-emoji {
+  font-size: 2.5rem;
+  display: inline-block;
+  transform: translateY(-2px);
+}
+
+.app-description {
+  font-size: 1.125rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 a,
@@ -206,11 +239,11 @@ form button.format:disabled {
 
 /* Container for better button positioning */
 .editor-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 1rem;
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .editor-container .CodeMirror {
@@ -220,13 +253,13 @@ form button.format:disabled {
 
 .CodeMirror {
   border: 2px solid var(--border);
-  border-radius: 12px;
+  border-radius: 8px;
   height: 400px !important;
   width: 100%;
   font-family: var(--mono-font);
   font-size: 14px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  line-height: 1.6;
+  background: var(--bg);
 }
 
 .CodeMirror:hover {
@@ -421,19 +454,23 @@ dfn:hover::before {
 }
 
 footer {
-  margin: 50px 0 0 0;
-  width: 100%;
-  padding: 2rem;
-  text-align: center;
-  color: var(--text-light);
+  background: var(--accent-bg);
   border-top: 1px solid var(--border);
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+footer p {
+  margin: 0.5rem 0;
 }
 
 footer a {
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: color 0.15s ease;
 }
 
 footer a:hover {
@@ -456,6 +493,14 @@ footer a:hover {
     font-size: 2rem;
   }
 
+  .camel-emoji {
+    font-size: 2rem;
+  }
+
+  .app-description {
+    font-size: 1rem;
+  }
+
   form button.format {
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
@@ -464,6 +509,10 @@ footer a:hover {
 
   fieldset {
     padding: 1rem;
+  }
+
+  .editor-container {
+    padding: 0.75rem;
   }
 
   .CodeMirror {
@@ -498,11 +547,19 @@ footer a:hover {
 @media (max-width: 480px) {
   main {
     min-width: 100%;
-    padding: 0.8rem;
+    padding: 0.5rem;
   }
 
   h1 {
     font-size: 1.75rem;
+  }
+
+  .camel-emoji {
+    font-size: 1.75rem;
+  }
+
+  .app-description {
+    font-size: 0.875rem;
   }
 
   form button.format {
